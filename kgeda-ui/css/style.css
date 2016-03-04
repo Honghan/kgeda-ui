@@ -1,0 +1,325 @@
+body{
+  margin: 0;
+	width: 100%;
+	height: 100%;
+	background: #665;
+}
+
+#kDriveHead{
+	position:fixed;
+	top:3px;
+	left:10px;
+	right:10px;
+	height:20px;
+	background-size: 18px;
+	border-radius: 4px;
+}
+
+
+#logoText{	
+	float:left;
+	margin-left:20px;
+	font-size:12px;
+	padding-top:10px;
+	padding-left:30px;
+	height:32px;
+	width:280px;
+	font-weight:bolder;
+	background-size: 28px;
+}
+
+#kDriveHead div{
+	padding-top:3px;
+	font-size:10px;
+}
+
+#dashboard{
+	position: fixed;
+	height: 35px;
+	top: 15px;
+	left: 10px;
+	right: 10px;
+	background: #eeeee2 36px 8px no-repeat;
+	border-radius: 4px;
+	padding: 2px 0 0 0;
+}
+
+#panel{
+	position: absolute;
+	top: 56px;
+	left: 10px;
+	right: 10px;
+	bottom: 10px;
+	padding: 0 10px;
+	background: #fffff3;
+	border-radius: 4px;
+	z-index: 1;
+}
+
+/*#intro {
+	position: fixed;
+	top: 100px;
+	left: 20px;
+	bottom: 50px;
+	z-index: 2;
+	display: none;
+	padding: 0px 20px;
+	max-width: 770px;
+	font: 14px/18px "Times New Roman", serif;
+	background: #eeeee2;
+	border-radius: 4px;
+	overflow-x: none;
+	overflow-y: auto;
+}*/
+
+#dashboard a.about {
+	position: absolute;
+	display: block;
+	top: 10px;
+	left: 20px;
+	width: 188px;
+	height: 33px;
+	vertical-align: bottom;
+	text-decoration: none;
+	color: #666;
+	font: 10px/20px Arial, sans-serif;
+	text-transform: uppercase;
+}
+
+#intro h1 a {
+	float: right;
+	text-decoration: none;
+	color: black;
+	font-size: 16px;
+}
+
+#editor {
+	position: absolute;
+	right: 10px;
+	top: 0;
+	width: 256px;
+	bottom: 10px;
+	overflow-y: auto;
+	overflow-x: hidden;
+	border: 1px solid #ccb;
+	padding-left: 0px;
+	background: #EEEEE2;
+}
+
+.io {
+	position:fixed;
+	opacity: 0.8;
+	top:70px;
+	left:70px;
+	width:180px;
+	height:35px;
+	color: #666;
+	font-size:12px;
+	padding-left: 16px;
+	padding-top: 12px;
+	border-radius: 10px 10px 10px 10px;
+	background: #ddd;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.dialog {
+	/*position: absolute;
+	background: rgba(0,0,0,.55);*/
+	width: 95%;
+	min-width: 200px;
+	padding: 0 10px 10px 10px;
+	margin: 0;
+	color: #666;
+	display:block;
+	list-style-type: none;
+}
+
+li.selected a{
+	font-weight:bolder;
+	color:red;
+}
+
+li.selected a:hover{
+	font-weight:bolder;
+	color:red;
+}
+
+.tip{
+	font-style: italic;
+}
+
+.dialog h1.sparql{
+	float:right;
+	margin: 20px 3px 2px 0;
+	padding: 0;
+	color: #333;
+	font: 14px Arial, sans-serif;
+	border-bottom: 0px solid #333;
+	font-style:italic;
+}
+
+.query{
+	width: 100%;
+	position: absolute;
+	display:none;
+	overflow:hidden;
+	background: rgba(0,0,0,.55);
+	z-index:10;
+	color:#eee;
+}
+
+.io a {
+	text-decoration: none;
+}
+
+.io .ctrl .examples {
+	float: right;
+}
+
+.io .ctrl .examples span {
+	background: url(down-up-arrow.png) no-repeat;
+	margin-left: 1px;
+	width: 10px;
+	height: 5px;
+	display: inline-block;
+}
+
+.io .ctrl .examples.selected span {
+	background: url(down-up-arrow.png) 0 -5px no-repeat;
+}
+
+#editor textarea {
+	position: relative;
+	display: block;
+	width: 100%;
+	min-width: 280px;
+	height: 100%;
+	border: 0;
+	padding: 0 0 0 2px;
+	margin: 0;
+	resize: none;
+}
+
+.dialog a {
+	color: #5555FF;
+	text-decoration: none;
+}
+
+.dialog a:hover{
+  color:#3333FF;
+  text-decoration:underline;
+}
+
+.dialog h1 {
+	font-weight:bold;
+	margin: 10px 0 4px 0;
+	padding: 0;
+	color: #7A9611;
+	font: 16px Arial, sans-serif;
+	border-bottom: 1px solid #7A9611;
+}
+
+.dialog h2 {
+	margin: 10px 0 4px 0;
+	padding: 0;
+	font: 14px Arial, sans-serif;
+	font-style:italic;
+}
+
+#dashboard .controls {
+	float: right;
+	font: 12px Arial;
+	margin: 0px 0 0 10px;
+}
+
+#dashboard .dsTip{
+	/*margin: 8px 0 0 260px;*/
+	color: #666;
+  float:left;
+}
+
+#dashboard .controls li{
+  list-style-type:none;
+  float:left;
+  padding-left:38px;
+  padding-right:38px;
+  margin:0px 0px 0 0px;
+  color: #666666;
+  font: 23px Arial, sans-serif;
+	text-transform: uppercase;
+	cursor: pointer; 
+	border-top: thick double #ccccc2;
+	border-radius: 30px 30px 0px 0;
+}
+
+#dashboard .controls li.selected{
+  color:red;
+  font-weight:bold;
+  border-top: thick double #ed0000;
+}
+
+#dashboard .controls li span{
+  font:12px Arial;
+  margin-left:4px;
+}
+
+span.clsClass{
+	font-weight:bold;
+	color:#0080FF;
+	cursor: pointer; 
+}
+
+span.clsProperty{
+	font-weight:bold;
+	color:#009726;
+	font-style: italic;
+}
+
+span.clsAttr{
+	font-weight:bold;
+	color:#400000;
+	font-style: italic;
+}
+
+.mqueries{
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.cd-panel-content div{
+	margin:5px;
+}
+
+#selectionDesc h1, #edaContainer h1{
+	font-size:16px;
+	font-weight: bold;
+	border-bottom: 1px solid #7A9611;
+	margin-top: 20px;
+}
+#edaContainer h2{
+	font-size:14px;
+	font-style: italic;
+	margin-top: 20px;
+}
+#edaContainer .edadiv{
+	background:#efefef;
+}
+
+#selectionDesc{
+	font-size:13px;
+	line-height: 23px;
+}
+
+.dialog{
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.clsLinkedEntity{
+	color: blue;
+	font-style: italic;
+	text-decoration: underline;
+	cursor: pointer;
+}

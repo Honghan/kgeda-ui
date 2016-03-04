@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+   "http://www.w3.org/TR/html4/strict.dtd">
+
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<title>Exploratory Data Analysis on Knowledge Graph</title>
+  <link rel="stylesheet" href="css/sidebar-style.css" type="text/css">
+  <link rel="stylesheet" href="css/sidebar-reset.css" type="text/css">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+  <link rel="stylesheet" href="css/vis.css" type="text/css">
+</head>
+<body>
+	
+	<div id="dashboard">
+    <div id="logoText">Knowledge Graph</div>
+		<ul class="controls">
+    </ul>
+	</div>
+	<div id="panel">
+    <div class="io">
+          <a href="#" class="tipSel cd-btn">Show Panel</a> |
+          <a href="#" class="new">Reset Selection</a></a>
+    </div>
+    <div id="viewport" style="width:1200px;height:800px;text-align:center"></div>
+	</div>
+
+    <div id="intro" class="cd-panel from-right" style=" display: block; z-index:2">
+      <header class="cd-panel-header">
+        <h1>Title Goes Here</h1>
+        <a href="#0" class="cd-panel-close">Close</a>
+      </header>
+
+      <div class="cd-panel-container">
+        <div class="cd-panel-content">
+          <div id="selectionDesc"></div>
+          <div id="instanceTable"></div>
+          <div id="edaContainer"></div>
+        </div> <!-- cd-panel-content -->
+      </div> <!-- cd-panel-container -->
+    </div> <!-- cd-panel -->
+
+
+  <script src="https://www.google.com/jsapi"></script>
+  <script src="js/lib/jquery-2.1.1.js"></script>
+  <script src="js/lib/jquery.json-2.3.js"></script>  
+  <script type="text/javascript" src="js/lib/vis.js"></script>
+  <script src="js/kt.qg.js"></script>
+  <script src="js/eda.api.js"></script>
+  <script src="js/dsResult.adr.kcl.js"></script>
+  <script type="text/javascript" src="js/eda.js"></script>
+  <script src="js/main.js"></script>
+
+</body>
+</html>
