@@ -900,50 +900,73 @@ var dsResults =
     "GQQueries": [],
     "MiningQueires": [],
     "edaresult": [
+  {
+    "results": [
       {
-        "nodeLabel": "MediaFragment",
-        "relNodeTypeAR": {
-          "hasEvent": {
-            "FootballMatchEvent": 926,
-            "FormulaOneEvent": 597
-          }
-        },
-        "disjointTypes": [
-          "hasEvent"
-        ],
-        "relObjectAR": {
-          "startDate": {
-            "19:58:00:16": 119,
-            "21:54:39:04": 157,
-            "21:52:00:17": 211,
-            "18:41:16:23": 226,
-            "20:44:14:03": 262,
-            "07:50:40:15": 120,
-            "13:00:00:00": 121,
-            "13:50:00:00": 138,
-            "13:15:00:00": 121,
-            "16:50:00:00": 143
-          },
-          "isPartOfVideo->Video": {
-            "8503683": 119,
-            "8579546": 157,
-            "8664408": 211,
-            "8991764": 226,
-            "9035634": 262,
-            "9291617": 120,
-            "9906245": 121,
-            "9938654": 138,
-            "10090022": 104,
-            "10180649": 158
-          }
-        },
-        "attrOrdinary": {},
-        "relObjNum": {},
-        "nodeId": 1
+        "meta": "{type:'categorical', disjoint:true}",
+        "analysisType": "CATEGORICAL",
+        "label": "startDate",
+        "data": {
+          "": 903,
+          "19:58:00:16": 119,
+          "21:54:39:04": 157,
+          "21:52:00:17": 211,
+          "18:41:16:23": 226,
+          "20:44:14:03": 262,
+          "07:50:40:15": 120,
+          "13:00:00:00": 121,
+          "13:50:00:00": 138,
+          "13:15:00:00": 121,
+          "16:50:00:00": 143
+        }
       },
-      {"nodeLabel":"FootballMatchEvent","relNodeTypeAR":{"hasParticipant":{"SoccerClub":21,"SoccerManager":95,"SoccerPlayer":709},"hasFootballMatchEventType":{"NamedIndividual, FootballMatchEventType":884,"FootballMatchEventType":561},"hasEvent":{"MediaFragment":1339,"Video":18}},"disjointTypes":["hasEvent"],"relObjectAR":{"hasParticipant->SoccerPlayer":{"\"Thierry Henry\"@en":32,"\"Lionel Messi\"@en":120,"\"Pedro Rodriguez Ledesma\"@en":47,"\"José Nunes\"@en":8,"\"Keita\"@en":11,"\"Julio Álvarez\"@en":10,"\"Touré\"@en":16,"\"Krkic\"@en":20,"\"Daniel Alves\"@en":38,"\"דודו אוואט\"@en":18,"\"Gabriel Alejandro Milito\"@en":29,"\"Rafael Márquez\"@en":7,"\"José Luis Martí\"@en":7,"\"Gerard Piqué\"@en":39,"\"Víctor Valdés\"@en":88,"\"Ibrahimovic\"@en":106,"\"Borja Valero\"@en":2,"\"Carles Puyol\"@en":43,"\"Sergio Busquets\"@en":46,"\"Iván Ramis Barrios\"@en":5,"\"Varela Ramos\"@en":3,"\"Éric Abidal\"@en":19,"\"Castro Irizábal\"@en":5,"\"Andrés Iniesta\"@en":70,"\"Markel Susaeta\"@en":7,"\"Fernando Llorente Torres\"@en":2,"\"Iraizoz\"@en":9,"\"Pablo Orbaiz\"@en":4,"\"Mikel San José\"@en":7,"\"Eduardo Salvio\"@en":2,"\"Álvaro Domínguez Soto\"@en":5,"\"Pablo Alvarez Nunez\"@en":9,"\"Juan Carlos Valerón Santana\"@en":8,"\"Colotto\"@en":4,"\"Luis Amaranto Perea\"@en":12,"\"José Manuel Pinto\"@en":24,"\"Soldado\"@en":12,"\"Juan Ángel Albín\"@en":20,"\"Torres\"@en":17,"\"León\"@en":18,"\"Ustari\"@en":1,"\"Daniel Parejo Muñoz\"@en":4,"\"Derek Boateng\"@en":7,"\"Codina\"@en":17,"\"Javier Casquero\"@en":5,"\"Forlan\"@en":18,"\"Enrique Corrales Martín\"@en":5,"\"Kun Aguero\"@en":4},"hasFootballMatchEventType->NamedIndividual, FootballMatchEventType":{"curios":102,"cromo":361,"bruticia":123,"rondo":7,"errada":54,"sortida":28,"replay":96,"\"scores\"@en":82,"llotja":41,"banqueta":51,"substitution":34,"celebracio":7,"religio":9,"penal":17,"respecte":6},"hasFootballMatchEventType->FootballMatchEventType":{"aturada":22,"lesio":12,"public":84,"ocasio":128,"moviola":68,"warming":72,"detall":119,"centrada":54,"assistencia":25,"anatec":9},"involvesBodyPart->BodyPart":{"head":67,"pierna":47,"hand":61,"cara":28}},"attrOrdinary":{},"relObjNum":{},"nodeId":26},
-      {"nodeLabel":"FormulaOneEvent","relNodeTypeAR":{"hasParticipant":{"FormulaOneRacer":583,"RacingTeam":46}},"disjointTypes":[],"relObjectAR":{"hasParticipant->FormulaOneRacer":{"Lewis Hamilton":74,"Fernando Alonso":166,"Webber":97,"Jenson Button":81,"Felipe Massa":91,"Michael Schumacher":29,"Sebastian Vettel":106,"Vitantonio Liuzzi":12,"Pedro de la Rosa":29,"Nico Hulkenberg":23,"Kamui Kobayashi":16,"Vitaly Petrov":17,"Jaime Alguersuari":17,"Adrian Sutil":14,"Nico Rosberg":21,"Heikki Kovalainen":6,"Robert Kubica":34,"Rubens Barrichello":20,"Jarno Trulli":7,"Sebastien_Buemi":10,"Lucas di Grassi":5,"Glock":4,"Bruno Senna":2,"Cristian Klein":2,"Sakon Yamamoto":1}},"attrOrdinary":{},"relObjNum":{},"nodeId":36},
-      {"nodeLabel":"SoccerPlayer","relNodeTypeAR":{},"disjointTypes":[],"relObjectAR":{"currentclub->SoccerClub":{"Barcelona":20,"\"Atletico Madrid\"@en":23,"\"Mallorca\"@en":24,"\"Deportivo La Coruna\"@en":29,"Getafe":23,"Athletic Bilbao":31}},"attrOrdinary":{},"relObjNum":{},"nodeId":37},
-    ]
+      {
+        "meta": "{type:'ordinary', parsingErro:true}",
+        "analysisType": "ORDINARY",
+        "label": "startDate",
+        "data": {
+          "[292278994-08-17, 292278994-08-17]": 0,
+          "[292278994-08-17, 1970-01-01]": 0
+        }
+      },
+      {
+        "meta": "{type:'LinkedType', disjoint:true}",
+        "analysisType": "LINKEDTYPE",
+        "label": "hasEvent",
+        "data": {
+          "FormulaOneEvent": 597,
+          "FootballMatchEvent": 926
+        }
+      },
+      {
+        "meta": "{type:'categorical', disjoint:true}",
+        "analysisType": "CATEGORICAL",
+        "label": "isPartOfVideo",
+        "data": {
+          "8503683": 119,
+          "8579546": 157,
+          "8664408": 211,
+          "8991764": 226,
+          "9035634": 262,
+          "9291617": 120,
+          "9906245": 121,
+          "9938654": 138,
+          "10090022": 104,
+          "10180649": 158,
+          "": 905
+        }
+      },
+    ],
+    "queryString": null,
+    "nodeId": 1,
+    "description": "all Medias"
+  },
+ {"nodeId":1,"description":"Medias about football match events","queryString":null,"results":[{"label":"startDate","meta":"{disjoint:true}","analysisType":"CATEGORICAL","data":{"19:58:00:16":105,"21:54:39:04":153,"21:52:00:17":199,"18:41:16:23":221,"20:44:14:03":248}},{"label":"startDate","meta":"{parsingErro:true}","analysisType":"ORDINARY","data":{"[292278994-08-17, 292278994-08-17]":0,"[292278994-08-17, 1970-01-01]":0}},{"label":"hasEvent","meta":"{disjoint:true}","analysisType":"LINKEDTYPE","data":{"FootballMatchEvent":926}},{"label":"isPartOfVideo","meta":"{disjoint:true}","analysisType":"CATEGORICAL","data":{"8503683":105,"8579546":153,"8664408":199,"8991764":221,"9035634":248}}]}
+,
+ {"description":"Medias about FormulaOneEvent","results":[{"label":"startDate","meta":"{disjoint:true}","analysisType":"CATEGORICAL","data":{"":242,"07:50:40:15":109,"13:00:00:00":114,"13:50:00:00":132}},{"label":"startDate","meta":"{parsingErro:true}","analysisType":"ORDINARY","data":{"[292278994-08-17, 292278994-08-17]":0,"[292278994-08-17, 1970-01-01]":0}},{"label":"hasEvent","meta":"{disjoint:true}","analysisType":"LINKEDTYPE","data":{"FormulaOneEvent":597}},{"label":"isPartOfVideo","meta":"{disjoint:true}","analysisType":"CATEGORICAL","data":{"10090022":99,"10180649":143,"9291617":109,"9906245":114,"9938654":132}}],"nodeId":1,"queryString":null}
+ ,
+ {"results":[{"label":"startDate","meta":"{disjoint:true}","analysisType":"CATEGORICAL","data":{"":661,"19:58:00:16":14,"21:54:39:04":4,"21:52:00:17":12,"18:41:16:23":5,"20:44:14:03":14,"07:50:40:15":11,"13:00:00:00":7,"13:50:00:00":6,"13:15:00:00":121,"16:50:00:00":143}},{"label":"startDate","meta":"{parsingErro:true}","analysisType":"ORDINARY","data":{"[292278994-08-17, 292278994-08-17]":0,"[292278994-08-17, 1970-01-01]":0}},{"label":"hasEvent","meta":"{disjoint:true}","analysisType":"CATEGORICAL","data":{"":998}},{"label":"isPartOfVideo","meta":"{disjoint:true}","analysisType":"CATEGORICAL","data":{"":905,"10090022":5,"10180649":15,"8503683":14,"8579546":4,"8664408":12,"8991764":5,"9035634":14,"9291617":11,"9906245":7,"9938654":6}}],"queryString":null,"nodeId":1,"description":"Medias has no event data"}
+
+]
   }
 ];

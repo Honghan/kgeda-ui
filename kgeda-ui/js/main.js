@@ -27,14 +27,17 @@
     var options = {};
     var physcsSetting = {
       barnesHut: {
-          enabled: true,
           gravitationalConstant: -2000,
           centralGravity: 0.10,
-          springLength: 268 ,
+          springLength: 68 ,
           springConstant: 0.01,
-          damping: 0.03
+          damping: 0.13
       }
     };
+    options.interaction = {
+        multiselect: false,
+        selectable: true,
+      };
     options.physics = physcsSetting;
     options.nodes = {
       color: {
@@ -46,13 +49,11 @@
         }
       }};
     options.edges = {
-      style:"arrow"}; 
-      // color: {
-      //   color: '#848484',
-      //   border: '#848484',
-      //   highlight: "red",
-      //   fontColor:'#343434'
-      // }};
+      arrows:{
+        to: true
+      }
+
+    }; 
 
     var network = new vis.Network($('#viewport').get(0),{},options);
 
@@ -60,7 +61,20 @@
       KTQGUI.selectNodes(properties.nodes);
     });
 
-		KTQGUI.initial( network, dsResults );
+		//KTQGUI.initial( network, dsResults, options );
+    var ds = {
+      ds:"Sports", 
+      dsuri: "/Users/jackey.wu/Documents/datasets/SportsDataset.rdf"
+      };
+    var datasetUri = "/Users/jackey.wu/Documents/datasets/SportsDataset.rdf";
+    qbb.inf.getDatasetSummary(datasetUri, function(d){
+      if (d){
+        var summary = $.parseJSON(d);
+        ds.edp = summary;
+        var datasets = [ds];
+        KTQGUI.initial( network, datasets, options );  
+      }      
+    });
 		
 		
 		$('.tipSel').click(function(){
@@ -131,6 +145,23 @@
       KTQGUI.clear();
     });
 
+    $('.modeSwitch').click(function(){
+      KTQGUI.toggleMode();
+    });
+
+    $('.modeSwitch').html(KTQGUI.uiMode + " Mode");
+
+    $('.queryLink').click(function(){
+      KTQGUI.queryEntities();
+    });
+
+    $('#querySaveDiv').click(function(){
+      KTQGUI.saveQuery();
+    });
+
+    $('#nodeQueries').click(function(){
+      KTQGUI.displayNodeQueries();
+    })
   })
 
 })(this.jQuery)

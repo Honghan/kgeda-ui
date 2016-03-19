@@ -19,8 +19,20 @@
 	</div>
 	<div id="panel">
     <div class="io">
-          <a href="#" class="tipSel cd-btn">Show Panel</a> |
-          <a href="#" class="new">Reset Selection</a></a>
+          <a href="#" class="tipSel cd-btn" title="click to show right panel">Show Panel</a> |
+          <a href="#" class="modeSwitch" title="click to switch modes">View Mode</a></a> | 
+          <a href="#" class="new" title="click to clear selections">Reset</a>
+    </div>
+    <div class="qio">
+       <input type="text" class="queryTitle" placeholder="Give the query a label"/> <a href="#" class="queryLink">Query</a>
+       <div class="qtip"> 
+        3 steps to query entities:
+        <ol>
+          <li><span>What to query?</span> Select a node which represents the type of entities.</li>
+          <li><span>What relations they should have?</span> Select one or more nodes that are related to the query node.</li>
+          <li><span>What entity should be linked? (optional)</span> Select an entity from entity table in the right panel.</li>
+        </ol>
+       </div>  
     </div>
     <div id="viewport" style="width:1200px;height:800px;text-align:center"></div>
 	</div>
@@ -34,6 +46,9 @@
       <div class="cd-panel-container">
         <div class="cd-panel-content">
           <div id="selectionDesc"></div>
+          <div id="nodeQueries"></div>
+          <div id="queryDiv"><button>choose selected instance</button></div>
+          <div id="querySaveDiv"><button>save this query</button></div>
           <div id="instanceTable"></div>
           <div id="edaContainer"></div>
         </div> <!-- cd-panel-content -->
@@ -44,10 +59,10 @@
   <script src="https://www.google.com/jsapi"></script>
   <script src="js/lib/jquery-2.1.1.js"></script>
   <script src="js/lib/jquery.json-2.3.js"></script>  
-  <script type="text/javascript" src="js/lib/vis.js"></script>
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.15.1/vis.min.js"></script>
   <script src="js/kt.qg.js"></script>
   <script src="js/eda.api.js"></script>
-  <script src="js/dsResult.adr.kcl.js"></script>
+  <script src="js/dsResult.sports.js"></script>
   <script type="text/javascript" src="js/eda.js"></script>
   <script src="js/main.js"></script>
 

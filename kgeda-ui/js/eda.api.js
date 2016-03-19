@@ -36,11 +36,75 @@ if (typeof qbb == "undefined"){
 				}
 			},
 
+			getSummaryNodeEDAResult:function(dataset, nodeId, searchCB){
+				var apiName = "getNodeAnalysisResult";
+				var sendObject={
+						r:apiName,
+						nodeId: nodeId,
+						dataset:dataset
+				};
+				qbb.inf.callAPI(sendObject, searchCB);
+			},
+
+			searchSavedQueries: function(dataset, nodeId, saveCB){
+				var apiName = "getSavedQueries";
+				var sendObject={
+						r:apiName,
+						nodeId: nodeId,
+						dataset:dataset
+				};
+				qbb.inf.callAPI(sendObject, saveCB);
+			},
+
+			getAnalysisResultOfQuery: function(dataset, nodeId, query, saveCB){
+				var apiName = "getAnalysisResultOfQuery";
+				var sendObject={
+						r:apiName,
+						nodeId: nodeId,
+						dataset:dataset,
+						query: query
+				};
+				qbb.inf.callAPI(sendObject, saveCB);
+			},
+
+			saveQuery: function(dataset, query, saveCB){
+				var apiName = "saveQuery";
+				var sendObject={
+						r:apiName,
+						query: query,
+						dataset:dataset
+				};
+				qbb.inf.callAPI(sendObject, saveCB);
+			},
+
+			//query entities 
+			queryEntities:function(dataset, queryJSON, searchCB){
+				var apiName = "queryEntities";
+				var sendObject={
+						r:apiName,
+						query: queryJSON,
+						dataset:dataset
+				};
+				qbb.inf.callAPI(sendObject, searchCB);
+			},
+
+			//search the entities that are represented as a EDP node in the
+			//summary graph
 			searchEDPInstances:function(dataset, nodeId, searchCB){
 				var apiName = "searchEDPInstances";
 				var sendObject={
 						r:apiName,
 						nodeId: nodeId,
+						dataset:dataset
+				};
+				qbb.inf.callAPI(sendObject, searchCB);
+			},
+
+			//get the summary for a given datase for visualisation
+			getDatasetSummary:function(dataset, searchCB){
+				var apiName = "getDatasetEDPSummary";
+				var sendObject={
+						r:apiName,
 						dataset:dataset
 				};
 				qbb.inf.callAPI(sendObject, searchCB);

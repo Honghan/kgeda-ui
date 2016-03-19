@@ -111,7 +111,7 @@ body{
 	opacity: 0.8;
 	top:70px;
 	left:70px;
-	width:180px;
+	width:210px;
 	height:35px;
 	color: #666;
 	font-size:12px;
@@ -121,6 +121,53 @@ body{
 	background: #ddd;
 	overflow: hidden;
 	z-index: 1;
+}
+
+.qio {
+	display: none;
+	position:fixed;
+	opacity: 0.9;
+	top:120px;
+	left:70px;
+	width:280px;
+	height:205px;
+	color: #666;
+	font-size:14px;
+	padding-left: 16px;
+	padding-top: 12px;
+	border-radius: 5px 5px 5px 5px;
+	background: #ded;
+	overflow: hidden;
+	z-index: 1;
+}
+
+.qtip{
+	color: black;
+	margin-top: 26px;
+	margin-left: 12px; 
+	margin-right: 12px;
+	font-size: 14px;
+}
+
+.qtip ol { 
+   list-style-type: decimal; 
+}
+
+.qtip li{
+	font-size: 12px;
+	display: list-item;
+	margin-top: 6px;
+}
+
+.qtip li span{
+	font-weight: bold;
+}
+
+.queryTitle{
+	font-size:12px;
+	margin-right: 3px;
+	width:200px;
+	height:23px;
 }
 
 .dialog {
@@ -169,7 +216,7 @@ li.selected a:hover{
 	color:#eee;
 }
 
-.io a {
+.qio a, .io a {
 	text-decoration: none;
 }
 
@@ -317,9 +364,21 @@ span.clsAttr{
 	line-height: 20px;
 }
 
-.clsLinkedEntity{
+.clsTopInstances, #nodeQueries, .clsLinkedEntity{
 	color: blue;
 	font-style: italic;
 	text-decoration: underline;
 	cursor: pointer;
+}
+
+#nodeQueries{
+	font-size: 13px;
+}
+
+#instanceTable{
+	margin-top: 2px;
+}
+
+#queryDiv, #querySaveDiv{
+	display: none;
 }

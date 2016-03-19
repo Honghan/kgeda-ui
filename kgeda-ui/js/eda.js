@@ -17,21 +17,56 @@
 				var rows = [];
 				for(var k in relData)
 				{
-					rows.push([k, relData[k]]);
+					rows.push([k=="" ? "n/a":k, relData[k]]);
 				}
 				data.addRows(rows);
 				return data;
 			},
 
-			renderRelResult: function(containerId, rel, data, columnNames, chartType){				
+			/**
+			* marge a group of eda results on the same analysis and
+			* convert it to google data table representation
+			*/
+			groupsOfEDAResult2GoogleDataTable: function(results, title, columnNames){
+				var data = new google.visualization.DataTable();
+
+				// Declare columns
+				data.addColumn('string', title);
+				for (var i=0;i<columnNames.length;i++)
+					data.addColumn('number', columnNames[i]);
+				
+				//create an array of all keys
+				var keySet = new Set();
+				for(var i=0;i<results.length;i++){
+					for(var k in results[i])
+						keySet.add(k);
+				}
+				// Add data.
+				var rows = [];
+				keySet.forEach(function(k){
+					var row = [k == "" ? "N/A" : k];
+					for(var i=0;i<results.length;i++){
+						if (results[i][k]){
+							row.push(results[i][k]);
+						}else{
+							row.push(0);
+						}
+					}
+					rows.push(row);
+				});
+				data.addRows(rows);
+				return data;
+			},
+
+			renderRelResult: function(containerId, rel, data, columnNames, chartType, hAxisVal){				
 				var options = {
 		          title: rel,
-		          hAxis: {title: columnNames[0],  titleTextStyle: {color: 'green'}, textPosition: "in"},
-		          vAxis: {title: "#" + columnNames[1],  titleTextStyle: {color: 'green'}},
+		          hAxis: {title: !hAxisVal?"Values/Categories":hAxisVal,  titleTextStyle: {color: 'green'}, textPosition: "in"},
+		          vAxis: {title: "#Entities",  titleTextStyle: {color: 'green'}},
 		          legend: {position: 'bottom'}
 		        };
 
-		        var dataTable = KTEDA.edaRelResultToDataTable(data, columnNames);
+		        var dataTable = KTEDA.groupsOfEDAResult2GoogleDataTable(data, rel, columnNames);
 		        if (!chartType && dataTable.getColumnLabel(0).toLowerCase() == "country")
 		        	chartType = "geoMap";
 		        
@@ -56,94 +91,64 @@
         		chart.draw(dataTable, options);
 			},
 
-			drawEDAChart: function(eda, chartDiv){          
-		        //for(var i=0;i<edaResult.length;i++)
-		        var edaResult = [];
-		        edaResult.push(eda);
-		        var i =0;
-		        {
-		        	$('#' + chartDiv).html("<h1>More Charateristics</h1>");
-		          var cid = "edac_title_" + i;
-		          $('#' + chartDiv).append('<div id="' + cid + '"/>');
-		          //$('#'+cid).html('<h1>' + edaResult[i].nodeLabel + '</h1>');
+			drawEDAChart: function(results, chartDiv){
+				//group results by label: it might be a good idea to 
+				//allow various properties to be grouped together using
+				//the same label. Semantically, similar labels might be 
+				//close to each othter. therefore, it might make good sense
+				//to integrate them
+				var grouped = {};
+				for(var i=0;i<results.length;i++){
+					results[i].results.forEach(function(r){
+						var analysisLabel = r.label + "_" + r.analysisType;
+						var grp = grouped[analysisLabel];
+						if (!grp){
+							grp = {label: r.label, analysisType: r.analysisType, data: [r.data], columns:[results[i].description], 
+								meta: $.trim(r.meta) == "" ? null : $.parseJSON(r.meta)};
+							grouped[analysisLabel] = grp;
+						}else{
+							grp.data.push(r.data);
+							grp.columns.push(results[i].description);
+						}
+					});
+				}
 
-		          chartType = null;
-		          var counter = 0;
-		          if (Object.keys(edaResult[i].relNodeTypeAR).length > 0)
-		          {
-		          	$('#' + chartDiv).append('<h2>By relational facets</h2>');
-		          }
-		          for(var rel in edaResult[i].relNodeTypeAR)
-		          {
-		            cid = "edac_" + "ntype_" + i + "_" + counter++;
-		            $('#' + chartDiv).append('<div id="' + cid + '"/>');
-		            if (edaResult[i].disjointTypes)
-		            {
-		            	for (var j=0;j< edaResult[i].disjointTypes.length;j++)
-			            {
-			            	if (edaResult[i].disjointTypes[j] == rel)
-			            	{
-			            		chartType = "pie";
-			            		break;
-			            	}
-			            }
-		            }		            
-		            KTEDA.renderRelResult(cid, rel, edaResult[i].relNodeTypeAR[rel], ["Types", edaResult[i].nodeLabel], chartType);
-		          }
+				for(var k in grouped){
+					var chartType = null;
+					if (grouped[k].meta && grouped[k].meta.disjoint){
+						if (grouped[k].columns.length < 2)
+							chartType = 'pie';
+					}
+					else if (grouped[k].meta && grouped[k].meta.parsingErro)
+						continue; //the analysis encountered some errors, so ignore the result
 
-		          chartType = null;
-		          counter = 0;
-		          if (Object.keys(edaResult[i].relObjectAR).length > 0)
-		          {
-		          	$('#' + chartDiv).append('<h2>By categorical objects</h2>');
-		          }
-		          for(var rel in edaResult[i].relObjectAR)
-		          {
-		            cid = "edac_" + "obj_" + i  + "_" + counter++ ;
-		            $('#' + chartDiv).append('<div id="' + cid + '"/>');
-		            var arr = rel.split("->");
-		            KTEDA.renderRelResult(cid, arr[0], edaResult[i].relObjectAR[rel], [arr[1], edaResult[i].nodeLabel], chartType);
-		          }
+					$('#' + chartDiv).append('<div id="' + k + '"/>');
+					KTEDA.renderRelResult(k, grouped[k].label, grouped[k].data, 
+						grouped[k].columns, 
+						chartType, 
+						KTEDA.formatAnalysisTypeText(grouped[k].analysisType)
+						);
+				}
+		      },
 
-		          chartType = null;
-		          counter = 0;
-		          if (Object.keys(edaResult[i].attrOrdinary).length > 0)
-		          {
-		          	$('#' + chartDiv).append('<h2>By ordinary attributes</h2>');
-		          }
-		          for(var rel in edaResult[i].attrOrdinary)
-		          {
-		            cid = "edac_" + "attr_" + i  + "_" + counter++ ;
-		            $('#' + chartDiv).append('<div id="' + cid + '"/>');
-		            KTEDA.renderRelResult(cid, rel, edaResult[i].attrOrdinary[rel], [rel, edaResult[i].nodeLabel], chartType);
-		          }
-
-		          //display the distribution of the number of values of a relation
-		          //e.g., how many clubs a footballer has played for, how many PhD students a professor supervises
-		          chartType = null;
-		          counter = 0;
-		          if (edaResult[i].relObjNum && Object.keys(edaResult[i].relObjNum).length > 0)
-		          {
-		          	$('#' + chartDiv).append('<h2>By number of related objects</h2>');
-		          }
-		          for(var rel in edaResult[i].relObjNum)
-		          {
-		          	if (Object.keys(edaResult[i].relObjNum[rel]).length <= 1) continue;
-		            cid = "edac_" + "objnum_" + i  + "_" + counter++ ;
-		            $('#' + chartDiv).append('<div id="' + cid + '"/>');
-		            KTEDA.renderRelResult(cid, "#" + edaResult[i].nodeLabel + " vs. #" + rel, edaResult[i].relObjNum[rel], ["#"+rel, edaResult[i].nodeLabel], chartType);
-		          }
-		        }
+		      formatAnalysisTypeText: function(type){
+		      	if (type == "LINKEDTYPE"){
+		      		return "Related Entity Types";
+		      	}else if (type == "ORDINARY"){
+		      		return "Value Ranges";
+		      	}else if (type == "CATEGORICAL"){
+		      		return "Values";
+		      	}
 		      },
 
 		      /**
 		      * render the instance data into a google table
 		      * 
 		      */
-		      renderDataTable: function(dataTable, tableDiv){
+		      renderDataTable: function(dataTable, tableDiv, firstCol, refCB, selectCB){
 		      	var data = new google.visualization.DataTable();
 		      	var colKeyArr = [];
-		      	data.addColumn('string', 'Entity');
+		      	data.addColumn('string', firstCol);
 		      	for(var key in dataTable.columns){
 		      		colKeyArr.push(key);
 			      	data.addColumn('string', dataTable.columns[key]);
@@ -168,6 +173,26 @@
 		        
 		        var table = new google.visualization.Table(tableDiv);
         		table.draw(data, {allowHtml: true, showRowNumber: false, width: '100%', height: '300px'});
+        		if (selectCB)
+        			google.visualization.events.addListener(table, 'select', selectCB);
+        		refCB(table);
+		      },
+
+		      renderQueryDataTable: function(queries, tableDiv, refCB, selectCB){
+		      	var data = new google.visualization.DataTable();
+		      	data.addColumn('string', 'Query ID');
+		      	data.addColumn('string', 'Label');
+		      	var tableRows = [];
+		      	for(var i=0;i<queries.length;i++){
+		      		tableRows.push([queries[i].queryId, queries[i].label]);
+		      	}
+		      	data.addRows(tableRows);
+		        
+		        var table = new google.visualization.Table(tableDiv);
+        		table.draw(data, {allowHtml: true, showRowNumber: false, width: '100%', height: '300px'});
+        		if (selectCB)
+        			google.visualization.events.addListener(table, 'select', selectCB);
+        		refCB(table);
 		      },
 
 		      /**
